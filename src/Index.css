@@ -1,0 +1,52 @@
+
+
+.logo {
+    width: 100px;
+    height: auto;
+    margin-left: 5%;
+}
+
+.motto {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2em;
+}
+
+.menu-main{
+    background-color: #F1EBE5;
+    padding: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+.menu .btn {
+    margin-bottom: 30px;
+    border-radius: 0%;
+    border: 1.5px solid #979289;
+    width: 95%;
+}
+
+div.menu > button:hover{
+    border-color: #8B3DFF;
+}
+
+.social{
+    text-align: center;
+    color: #444135;
+    width: 24px;
+    height: 20px;
+    margin-right: 20px;
+}
+
+.second{
+    margin-left: 2%;
+}
+
+.container{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}

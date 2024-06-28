@@ -1,0 +1,36 @@
+
+
+
+.header {
+    background-color: #F1EBE5; /* Dark grey background */
+    color: #fff; /* White text color */
+    margin: 0%;
+}
+.main-content {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #F1EBE5;
+    height: 300px;
+    width: 300px;
+    float: right;
+}
+.info-box {
+
+    margin-bottom: 20px; /* Margin below the boxes */
+    padding: 10px;
+}
+
+.no-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.distance{
+    margin: 2px;
+    width: 60%;
+}
+
+.sanjay{
+    float: right;
+}
+
