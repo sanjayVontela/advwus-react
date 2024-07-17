@@ -19,7 +19,7 @@ body {
     padding: 20px;
     padding: 20px;
     text-align: center;
-    height: 500px;
+    height: 100%;
 }
 
 
@@ -72,7 +72,7 @@ body {
     border-style: solid;
     border-color: gray;
     border-width: 1px;
-    border-radius: 90%;
+    /* border-radius: 90%; */
 }
 
 h4{

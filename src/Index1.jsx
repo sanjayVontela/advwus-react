@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import "./Index.css";
+import "./Index1.css";
 import { faFacebookF, faTwitter,faInstagram } from "@fortawesome/free-brands-svg-icons"
 
 const Index = () => {
