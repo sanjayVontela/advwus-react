@@ -3,6 +3,7 @@ import { TextField, Select, MenuItem } from '@mui/material';
 import "./signup.css";
 import Slider from '@mui/material/Slider';
 import Box from '@mui/material/Box';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
     const [email, setEmail] = useState("");
@@ -10,9 +11,11 @@ const Signup = () => {
     const [error, setErrors] = useState({});
     const [selectedRole, setSelectedRole] = useState("");
     const [value, setValue] = React.useState([10, 99999]);
-
+    const Navigate = useNavigate();
     const [data, setData] = useState({
-        email:"",
+        fname:"",
+        lname:"",
+        username:"",
         password:"",
         confirmPassword:"",
         role:"",
@@ -28,9 +31,8 @@ const Signup = () => {
         how:"",
         youtube:"",
         insta:"",
-        tiktok:""
-
-
+        tiktok:"",
+        profilePic:""
 
     })
 
@@ -50,39 +52,49 @@ const Signup = () => {
             {value:"offline", label:"Offline"},
             {value:"both", label:"Both"}
         ]
+
+        function how(item){
+            if (data.where.includes(item)){
+                data.where = data.where.filter((element)=> {return element != item} )
+            }
+            else{
+                data.where.push(item)
+            }
+        }
+
         return (
             <>
-                <TextField type="string" label="Channel Name" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} error={error.email} required onChange={(e) => setData({...data,channelName:e.target.value})} /><br />
-                <TextField type="string" label="Channel description" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} error={error.email} required onChange={(e) => setData({...data,channelDesc:e.target.value})} /><br />
+                <TextField type="string" label="Channel Name" variant="outlined" sx={{ margin: "2% auto", width: "80%" }}  required onChange={(e) => setData({...data,channelName:e.target.value})} /><br />
+                <TextField type="string" label="Channel description" variant="outlined" sx={{ margin: "2% auto", width: "80%" }}  required onChange={(e) => setData({...data,channelDesc:e.target.value})} /><br />
                 <Select
-                                    className='select'
-                                    displayEmpty
-                                    sx={{ margin: "2% auto", width: "80%" }}
-                                    onChange={(e)=>setData({...data, how:e.target.value})}
-                                    required
-                                >
-                                    <MenuItem value="" disabled>How can you advertise?</MenuItem>
-                                    {where.map(option => (
-                                        <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
-                                    ))}
-
-                                </Select>
+                className='select'
+                displayEmpty
+                sx={{ margin: "2% auto", width: "80%" }}
+                value={data.how}
+                onChange={(e) => setData({ ...data, how: e.target.value })}
+                required
+            >
+                <MenuItem value="" disabled>How can you advertise?</MenuItem>
+                {where.map(option => (
+                    <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
+                ))}
+            </Select>
                                 <fieldset>
                                 <legend>Where can you advertise:</legend>
 
                                 <div>
-                                    <input type="checkbox" id="youtube" name="youtube"  onClick={(e)=>data.where.push(e.target.value)}/>
+                                    <input type="checkbox" id="youtube" name="youtube"  onClick={(e)=>how(e.target.id)}/>
                                     <label for="youtube">Youtube</label>
                                 </div>
 
                                 <div>
-                                    <input type="checkbox" id="events" name="events" onClick={(e)=>data.where.push(e.target.value)}/>
+                                    <input type="checkbox" id="events" name="events" onClick={(e)=>how(e.target.id)}/>
                                     <label for="horns">Events</label>
                                 </div>
                                 </fieldset>
-                <TextField type="string" label="Youtube account" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} error={error.email} required onChange={(e) => setData({...data,youtube:e.target.value})} /><br />
-                <TextField type="string" label="Instagram account" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} error={error.email} required onChange={(e) => setData({...data,insta:e.target.value})} /><br />
-                <TextField type="string" label="TikToc account" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} error={error.email} required onChange={(e) => setData({...data,tiktok:e.target.value})} /><br />
+                <TextField type="string" label="Youtube account" variant="outlined" sx={{ margin: "2% auto", width: "80%" }}  required onChange={(e) => setData({...data,youtube:e.target.value})} /><br />
+                <TextField type="string" label="Instagram account" variant="outlined" sx={{ margin: "2% auto", width: "80%" }}  required onChange={(e) => setData({...data,insta:e.target.value})} /><br />
+                <TextField type="string" label="TikToc account" variant="outlined" sx={{ margin: "2% auto", width: "80%" }}  required onChange={(e) => setData({...data,tiktok:e.target.value})} /><br />
             </>
         );
     }
@@ -123,8 +135,8 @@ const Signup = () => {
         
         return (
             <>
-                <TextField type="string" label="Organization's Name" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} error={error.email} required onChange={(e) => setData({...data, organizatonName:e.target.value})} /><br />
-                <TextField type="string" label="Bio about organization" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} error={error.email} required onChange={(e) => setData({...data, organizationBio:e.target.value})} /><br />
+                <TextField type="string" label="Organization's Name" variant="outlined" sx={{ margin: "2% auto", width: "80%" }}  required onChange={(e) => setData({...data, organizatonName:e.target.value})} /><br />
+                <TextField type="string" label="Bio about organization" variant="outlined" sx={{ margin: "2% auto", width: "80%" }}  required onChange={(e) => setData({...data, organizationBio:e.target.value})} /><br />
                 <TextField type="string" label="Product Name" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} required onChange={(e)=>setData({...data, productName:e.target.value})} /><br />
                 <Select
         className='select'
@@ -155,9 +167,9 @@ const Signup = () => {
     
 
     function signIn() {
-        if (checkEmail(data.email) || data.password.length === "") {
+        if (checkEmail(data.username) || data.password.length === "") {
             setErrors({
-                email: checkEmail(email),
+                email: checkEmail(data.username),
                 password: password.length === 0
             });
             return;
@@ -170,24 +182,22 @@ const Signup = () => {
 
         console.log(data);
 
-        // Uncomment the fetch code when needed
-        // fetch("http://localhost:4444/login",{
-        //   method:"post",
-        //   credentials:'include',
-        //   headers:{
-        //     "Content-Type": "application/json",
-        //   },
-        //   body:JSON.stringify(updatedData)
-        // })
-        // .then(response=>response.json())
-        // .then(data=>{
-        //   if(data.message === "Login successful"){
-        //     navigate("/home", {state:data.user})
-        //   }else{
-        //     alert(data.message);
-        //   }
-        // })
-        // .catch(error=>console.error(error))
+        fetch("http://localhost:4444/auth/register",{
+          method:"post",
+          credentials:'include',
+          headers:{
+            "Content-Type": "application/json",
+          },
+          body:JSON.stringify(data)
+        })
+        .then(response=>response.json())
+        .then(data=>{
+            if(data.new_user){
+                alert("User created successfully")
+                Navigate("/login");
+            }
+        })
+        .catch(error=>console.error(error))
     }
 
     return (
@@ -205,9 +215,11 @@ const Signup = () => {
                                 <h4 style={{ color: "white" }}>SignUp</h4>
                             </div>
                             <div>
-                                <TextField type="string" label="UserName/Email" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} error={error.email} required onChange={(e) => setData({...data,email:e.target.value})} /><br />
-                                <TextField type="password" label="Password" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} error={error.password} required onChange={(e) => setData({...data,password:e.target.value})} /><br />
-                                <TextField type="password" label="Confirm Password" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} error={error.password} required onChange={(e) => setData({...data,confirmPassword:e.target.value})} /><br />
+                                <TextField type="string" label="First Name" variant="outlined" sx={{ margin: "2% auto", width: "80%" }}  required onChange={(e) => setData({...data,fname:e.target.value})} /><br />
+                                <TextField type="string" label="Last Name" variant="outlined" sx={{ margin: "2% auto", width: "80%" }}  required onChange={(e) => setData({...data,lname:e.target.value})} /><br />
+                                <TextField type="string" label="UserName/Email" variant="outlined" sx={{ margin: "2% auto", width: "80%" }}  required onChange={(e) => setData({...data,username:e.target.value})} /><br />
+                                <TextField type="password" label="Password" variant="outlined" sx={{ margin: "2% auto", width: "80%" }}  required onChange={(e) => setData({...data,password:e.target.value})} /><br />
+                                <TextField type="password" label="Confirm Password" variant="outlined" sx={{ margin: "2% auto", width: "80%" }}  required onChange={(e) => setData({...data,confirmPassword:e.target.value})} /><br />
 
                                 <Select
                                     className='select'

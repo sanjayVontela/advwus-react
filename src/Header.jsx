@@ -36,7 +36,7 @@ function Admin() {
       <Dropdown.Toggle variant='dark' id="dropdown-basic">User</Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Dropdown.Item href="#/action-1" className='drop-item'>Profile</Dropdown.Item>
+        <Dropdown.Item href="/profile" className='drop-item'>Profile</Dropdown.Item>
         <Dropdown.Item href="#/action-2" className='drop-item'>Reach Analysis</Dropdown.Item>
         <Dropdown.Item href="#/action-3" className='drop-item'>Likes/Other</Dropdown.Item>
         <Dropdown.Item href="#/action-3" className='drop-item'>Settings</Dropdown.Item>
@@ -68,11 +68,8 @@ function Customer(){
             <Navbar.Toggle aria-controlls="navbar-scroll" />
             <Navbar.Collapse id="navbarScroll">
             <Nav className="me-auto my-2 my-lg-0" style={{maxHeight:'100px'}} navbarScroll>
-                <Nav.Link className="nav-link" href="/sanjay">Home</Nav.Link>
-                <Nav.Link className="nav-link" href="/watchList">About us</Nav.Link>
-                <Nav.Link className="nav-link" href="/watchList">Producer</Nav.Link>
-                <Nav.Link className="nav-link" href="/watchList">Consumer</Nav.Link>
-                <Nav.Link className="nav-link" href="/watchList">All Products</Nav.Link>
+                <Nav.Link className="nav-link" href="/customer">Home</Nav.Link>
+                <Nav.Link className="nav-link" href="/producers">Products</Nav.Link>
                 <Nav.Link className="nav-link" href="/watchList">All Deals</Nav.Link>
                 
 
@@ -84,7 +81,7 @@ function Customer(){
       <Dropdown.Toggle variant='dark' id="dropdown-basic">User</Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Dropdown.Item href="#/action-1" className='drop-item'>Profile</Dropdown.Item>
+        <Dropdown.Item href="/profile" className='drop-item'>Profile</Dropdown.Item>
         <Dropdown.Item href="#/action-2" className='drop-item'>Status/Reach</Dropdown.Item>
         <Dropdown.Item href="#/action-3" className='drop-item'>Likes/Other</Dropdown.Item>
         <Dropdown.Item href="#/action-3" className='drop-item'>Settings</Dropdown.Item>
@@ -115,14 +112,11 @@ function Producer(){
             <Navbar.Toggle aria-controlls="navbar-scroll" />
             <Navbar.Collapse id="navbarScroll">
             <Nav className="me-auto my-2 my-lg-0" style={{maxHeight:'100px'}} navbarScroll>
-                <Nav.Link className="nav-link" href="/sanjay">Home</Nav.Link>
-                <Nav.Link className="nav-link" href="/watchList">About us</Nav.Link>
-                <Nav.Link className="nav-link" href="/watchList">Producer</Nav.Link>
-                <Nav.Link className="nav-link" href="/watchList">Consumer</Nav.Link>
+                <Nav.Link className="nav-link" href="/producer">Home</Nav.Link>
+                <Nav.Link className="nav-link" href="/customers">Consumers</Nav.Link>
                 <Nav.Link className="nav-link" href="/watchList">All Products</Nav.Link>
+                <Nav.Link className="nav-link" href="/watchList">Add Product</Nav.Link>
                 <Nav.Link className="nav-link" href="/watchList">All Deals</Nav.Link>
-                
-
             </Nav>
 
             <Button variant='dark'><FontAwesomeIcon icon={faMessage}/></Button>
@@ -131,7 +125,7 @@ function Producer(){
       <Dropdown.Toggle variant='dark' id="dropdown-basic">User</Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Dropdown.Item href="#/action-1" className='drop-item'>Profile</Dropdown.Item>
+        <Dropdown.Item href="/profile" className='drop-item'>Profile</Dropdown.Item>
         <Dropdown.Item href="#/action-2" className='drop-item'>Status/Reach</Dropdown.Item>
         <Dropdown.Item href="#/action-3" className='drop-item'>Likes/Other</Dropdown.Item>
         <Dropdown.Item href="#/action-3" className='drop-item'>Settings</Dropdown.Item>

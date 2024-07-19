@@ -1,11 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "./AllCustomers.css"
 import Header from './Header';
 import { Col, Container,Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 // import Row from 'react-bootstrap';
+import { useState } from 'react';
 
 const AllCustomers = () => {
+
+
+    const [data, setData] = useState([])
+
+    useEffect(()=>{
+            fetch("http://localhost:4444/user/allcustomers",{
+                method:"GET",
+                credentials:"include",
+                headers:{
+                    "Content-Type":"application/json"
+                }
+            })
+            .then(response=>response.json())
+            .then(data=>setData(data))
+            .catch(err=>console.error(err))
+    },[])
+
+
     return (
         <>
             <Header x="admin"/>

@@ -2,9 +2,11 @@ import React from 'react';
 import { TextField } from '@mui/material';
 import "./Login.css";
 import { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+
+    const navigate = useNavigate();
 
     const [email,setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -34,24 +36,31 @@ const Login = () => {
           password:password,
         }
         
-        // fetch("http://localhost:4444/login",{
-        //   method:"post",
-        //   credentials:'include',
-        //   headers:{
-        //     "Content-Type": "application/json",
-        //   },
-        //   body:JSON.stringify(updatedData)
-        // }
-        // )
-        // .then(response=>response.json())
-        // .then(data=>{
-        //   if(data.message === "Login successful"){
-        //     navigate("/home", {state:data.user})
-        //   }else{
-        //     alert(data.message);
-        //   }
-        // })
-        // .catch(error=>console.error(error))
+        console.log(updatedData);
+        fetch("http://localhost:4444/auth/login",{
+          method:"post",
+          credentials:'include',
+          headers:{
+            "Content-Type": "application/json",
+          },
+          body:JSON.stringify(updatedData)
+        }
+        )
+        .then(response=>response.json())
+        .then(data=>{
+            if(data.user){
+                if(data.user.role == "producer"){
+                    navigate("/producer")
+                }
+                else{
+                    navigate("/customer")
+                }
+            }
+            else{
+                alert(data.message);
+            }
+        })
+        .catch(error=>console.error(error))
       }
 
     return (
@@ -66,7 +75,7 @@ const Login = () => {
                 <div className='col-md-4 menu-main'>
                     <div className='login'>
                         <div className='text'>
-                            <h4>Login</h4>
+                            <h4 style={{color:"white"}}>Login</h4>
                         </div>
                         <div>
                         <TextField type="string" label="email" variant="outlined" sx={{margin:"2% auto",width:"80%"}} error={error.email} required onChange={(e)=>setEmail(e.target.value)}/><br/>

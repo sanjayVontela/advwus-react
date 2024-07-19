@@ -8,6 +8,7 @@ import Customer from './Customer';
 import Producer from './Producer';
 import Admin from './Admin';
 import Signup from './Signup';
+import Profile from './Profile';
 
 const RoutesList = () => {
     return (
@@ -21,6 +22,7 @@ const RoutesList = () => {
                 <Route path='/producer' element={<Producer />} />
                 <Route path='/admin' element={<Admin />} />
                 <Route path='/signup' element={<Signup />} />
+                <Route path='/profile' element={<Profile />} />
             </Routes>
         </BrowserRouter>
     );
