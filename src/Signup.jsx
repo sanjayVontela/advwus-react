@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { TextField, Select, MenuItem } from '@mui/material';
 import "./signup.css";
-import Slider from '@mui/material/Slider';
-import Box from '@mui/material/Box';
 import { useNavigate } from 'react-router-dom';
+import PasswordChecklist from "react-password-checklist";
+import validator from 'validator';
 
 const Signup = () => {
     const [email, setEmail] = useState("");
@@ -21,10 +21,6 @@ const Signup = () => {
         role:"",
         organizatonName:"",
         organizationBio:"",
-        productName:"",
-        productType:"",
-        productDesc:"",
-        range:[],
         channelName:"",
         channelDesc:"",
         where:[],
@@ -64,8 +60,8 @@ const Signup = () => {
 
         return (
             <>
-                <TextField type="string" label="Channel Name" variant="outlined" sx={{ margin: "2% auto", width: "80%" }}  required onChange={(e) => setData({...data,channelName:e.target.value})} /><br />
-                <TextField type="string" label="Channel description" variant="outlined" sx={{ margin: "2% auto", width: "80%" }}  required onChange={(e) => setData({...data,channelDesc:e.target.value})} /><br />
+                <TextField type="string" label="Channel Name" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} error={error.channelName} required onChange={(e) => setData({...data,channelName:e.target.value})} /><br />
+                <TextField type="string" label="Channel description" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} error={error.channelDesc}  required onChange={(e) => setData({...data,channelDesc:e.target.value})} /><br />
                 <Select
                 className='select'
                 displayEmpty
@@ -100,44 +96,34 @@ const Signup = () => {
     }
     function producer() {
         const options = [
-            { value: "automotive", label: "Automotive" },
-            { value: "real_estate", label: "Real Estate" },
-            { value: "technology", label: "Technology" },
-            { value: "health_fitness", label: "Health and Fitness" },
-            { value: "fashion_beauty", label: "Fashion and Beauty" },
-            { value: "food_beverage", label: "Food and Beverage" },
-            { value: "travel_tourism", label: "Travel and Tourism" },
-            { value: "education", label: "Education" },
-            { value: "entertainment", label: "Entertainment" },
-            { value: "finance", label: "Finance" },
-            { value: "home_garden", label: "Home and Garden" },
-            { value: "sports_outdoors", label: "Sports and Outdoors" },
-            { value: "pets", label: "Pets" },
-            { value: "automotive_services", label: "Automotive Services" },
-            { value: "media_publishing", label: "Media and Publishing" },
-            { value: "business_services", label: "Business Services" },
-            { value: "personal_services", label: "Personal Services" },
-            { value: "events_occasions", label: "Events and Occasions" },
-            { value: "non_profit_community", label: "Non-Profit and Community" },
-            { value: "professional_services", label: "Professional Services" }
+            { value: "Automotive", label: "Automotive" },
+            { value: "Real Estate", label: "Real Estate" },
+            { value: "Technology", label: "Technology" },
+            { value: "Health Fitness", label: "Health and Fitness" },
+            { value: "Fashion Beauty", label: "Fashion and Beauty" },
+            { value: "Food Beverage", label: "Food and Beverage" },
+            { value: "Travel Tourism", label: "Travel and Tourism" },
+            { value: "Education", label: "Education" },
+            { value: "Entertainment", label: "Entertainment" },
+            { value: "Finance", label: "Finance" },
+            { value: "Home Garden", label: "Home and Garden" },
+            { value: "sports Outdoors", label: "Sports and Outdoors" },
+            { value: "Pets", label: "Pets" },
+            { value: "Automotive Services", label: "Automotive Services" },
+            { value: "Media Publishing", label: "Media and Publishing" },
+            { value: "Business Services", label: "Business Services" },
+            { value: "Personal Services", label: "Personal Services" },
+            { value: "Events Occasions", label: "Events and Occasions" },
+            { value: "Non Profit Community", label: "Non-Profit and Community" },
+            { value: "Professional Services", label: "Professional Services" }
           ];
 
-        
-
-        function valuetext(value) {
-            return `${value}°C`;
-          }
-
-          const handleChange = (event, newValue) => {
-            setValue(newValue);
-            setData({...data, range:newValue})
-          };
-        
+  
         return (
             <>
-                <TextField type="string" label="Organization's Name" variant="outlined" sx={{ margin: "2% auto", width: "80%" }}  required onChange={(e) => setData({...data, organizatonName:e.target.value})} /><br />
-                <TextField type="string" label="Bio about organization" variant="outlined" sx={{ margin: "2% auto", width: "80%" }}  required onChange={(e) => setData({...data, organizationBio:e.target.value})} /><br />
-                <TextField type="string" label="Product Name" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} required onChange={(e)=>setData({...data, productName:e.target.value})} /><br />
+                <TextField type="string" label="Organization's Name" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} error={error.organizatonName}  required onChange={(e) => setData({...data, organizatonName:e.target.value})} /><br />
+                <TextField type="string" label="Bio about organization" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} error={error.organizationBio}  required onChange={(e) => setData({...data, organizationBio:e.target.value})} /><br />
+                {/* <TextField type="string" label="Product Name" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} required onChange={(e)=>setData({...data, productName:e.target.value})} /><br />
                 <Select
         className='select'
         displayEmpty
@@ -160,17 +146,36 @@ const Signup = () => {
                     valueLabelDisplay="auto"
                     getAriaValueText={valuetext}
                 />
-                </Box>
+                </Box> */}
             </>
         );
     }
     
+    const passwordValidator = (password)=>{
+        if(validator.isStrongPassword(password, { 
+         minLength: 8, minLowercase: 1, 
+         minUppercase: 1, minNumbers: 1, minSymbols: 1 
+     })){
+       return false;
+     }
+     }
+    function signIn(e) {
 
-    function signIn() {
-        if (checkEmail(data.username) || data.password.length === "") {
+
+        e.preventDefault();
+
+        console.log(JSON.stringify(data));
+        if (checkEmail(data.username) ||  passwordValidator(data.password)) {
             setErrors({
                 email: checkEmail(data.username),
-                password: password.length === 0
+                password : !passwordValidator(data.password),
+                fname : data.fname.length === 0,
+                lname : data.lname.length === 0,
+                organizatonName:data.organizatonName.length===0,
+                organizationBio:data.organizationBio.length===0,
+                channelName:data.channelName.length===0,
+                channelDesc:data.channelDesc.length===0,
+
             });
             return;
         }
@@ -201,7 +206,8 @@ const Signup = () => {
     }
 
     return (
-        <>
+        <>  
+            <form>
             <div className='container'>
                 <div className='row'>
                     <div className="col-md-6 motto-class">
@@ -215,12 +221,24 @@ const Signup = () => {
                                 <h4 style={{ color: "white" }}>SignUp</h4>
                             </div>
                             <div>
-                                <TextField type="string" label="First Name" variant="outlined" sx={{ margin: "2% auto", width: "80%" }}  required onChange={(e) => setData({...data,fname:e.target.value})} /><br />
-                                <TextField type="string" label="Last Name" variant="outlined" sx={{ margin: "2% auto", width: "80%" }}  required onChange={(e) => setData({...data,lname:e.target.value})} /><br />
-                                <TextField type="string" label="UserName/Email" variant="outlined" sx={{ margin: "2% auto", width: "80%" }}  required onChange={(e) => setData({...data,username:e.target.value})} /><br />
-                                <TextField type="password" label="Password" variant="outlined" sx={{ margin: "2% auto", width: "80%" }}  required onChange={(e) => setData({...data,password:e.target.value})} /><br />
+                                <TextField type="string" label="First Name" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} error={error.fname}  required onChange={(e) => setData({...data,fname:e.target.value})} /><br />
+                                <TextField type="string" label="Last Name" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} error={error.lname}  required onChange={(e) => setData({...data,lname:e.target.value})} /><br />
+                                <TextField type="string" label="UserName/Email" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} error={error.email}  required onChange={(e) => setData({...data,username:e.target.value})} /><br />
+                                <TextField type="password" label="Password" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} error={error.password}  required onChange={(e) => setData({...data,password:e.target.value})} /><br />
                                 <TextField type="password" label="Confirm Password" variant="outlined" sx={{ margin: "2% auto", width: "80%" }}  required onChange={(e) => setData({...data,confirmPassword:e.target.value})} /><br />
-
+                                <PasswordChecklist
+				rules={["minLength","specialChar","number","capital","match"]}
+				minLength={8}
+				value={data.password}
+				valueAgain={data.confirmPassword}
+				messages={{
+					minLength: "The Password must contain more than 8 characters",
+					specialChar: "Password has special characters.",
+					number: "Password has number.",
+					capital: "Password has capital letter.",
+					match: "passwords should match.",
+				}}
+			/>
                                 <Select
                                     className='select'
                                     value={data.role}
@@ -236,13 +254,14 @@ const Signup = () => {
                                 </Select>
                                 {data.role === "consumer" && consumer() || data.role == "producer" && producer() }
                                 <div className='submit'>
-                                    <button className='btn btn-dark' type='submit' onClick={() => signIn()}>Submit</button>
+                                    <button className='btn btn-dark' type='submit' onClick={signIn}>Submit</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            </form>
         </>
     );
 };

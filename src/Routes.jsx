@@ -9,6 +9,9 @@ import Producer from './Producer';
 import Admin from './Admin';
 import Signup from './Signup';
 import Profile from './Profile';
+import AddProduct from './AddProduct';
+import OwnProducts from './OwnProducts';
+import EditProduct from './editProduct';
 
 const RoutesList = () => {
     return (
@@ -23,6 +26,9 @@ const RoutesList = () => {
                 <Route path='/admin' element={<Admin />} />
                 <Route path='/signup' element={<Signup />} />
                 <Route path='/profile' element={<Profile />} />
+                <Route path='/addProduct' element={<AddProduct />} />
+                <Route path='/ownProducts' element={<OwnProducts />} />
+                <Route path='/editProduct/:id' element={<EditProduct />} />
             </Routes>
         </BrowserRouter>
     );

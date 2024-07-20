@@ -114,8 +114,8 @@ function Producer(){
             <Nav className="me-auto my-2 my-lg-0" style={{maxHeight:'100px'}} navbarScroll>
                 <Nav.Link className="nav-link" href="/producer">Home</Nav.Link>
                 <Nav.Link className="nav-link" href="/customers">Consumers</Nav.Link>
-                <Nav.Link className="nav-link" href="/watchList">All Products</Nav.Link>
-                <Nav.Link className="nav-link" href="/watchList">Add Product</Nav.Link>
+                <Nav.Link className="nav-link" href="/ownProducts">All Products</Nav.Link>
+                <Nav.Link className="nav-link" href="/addProduct">Add Product</Nav.Link>
                 <Nav.Link className="nav-link" href="/watchList">All Deals</Nav.Link>
             </Nav>
 
