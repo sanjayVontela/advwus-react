@@ -51,7 +51,7 @@ const AllProducts = () => {
             }
             else{
                 NotificationManager.error(data.error);
-                alert(data.error);
+                // alert(data.error);
             }
         })
         
