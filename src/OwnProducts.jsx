@@ -6,6 +6,8 @@ import Button from 'react-bootstrap/Button';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+
 // import Row from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
@@ -41,11 +43,14 @@ const AllProducts = () => {
         })
         .then(response=>response.json())
         .then(data=>{
+            // console.log(data);
             if(data.message){
-                alert(data.message);
-                window.location.reload();
+                NotificationManager.success(data.message);
+                setData(data.data.data)
+                // window.location.reload();
             }
             else{
+                NotificationManager.error(data.error);
                 alert(data.error);
             }
         })
@@ -102,7 +107,8 @@ const AllProducts = () => {
                 </Row>
 
                 )
-            })}            
+            })}  
+            <NotificationContainer/>          
         </>
     );
 }

@@ -3,6 +3,7 @@ import { TextField } from '@mui/material';
 import "./Login.css";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 const Login = () => {
 
@@ -20,8 +21,10 @@ const Login = () => {
       }
     
 
-      function signIn() {
+      function signIn(e) {
 
+        // e.preventDefault();
+        e.preventDefault();
 
         if(checkEmail(email) || password.length === ""){
           setErrors({
@@ -57,7 +60,7 @@ const Login = () => {
                 }
             }
             else{
-                alert(data.message);
+                NotificationManager.error(data.message);
             }
         })
         .catch(error=>console.error(error))
@@ -74,6 +77,7 @@ const Login = () => {
                 </div>
                 <div className='col-md-4 menu-main'>
                     <div className='login'>
+                        <form>
                         <div className='text'>
                             <h4 style={{color:"white"}}>Login</h4>
                         </div>
@@ -82,15 +86,17 @@ const Login = () => {
                         <TextField type="password" label="password" variant="outlined" sx={{margin:"2% auto",width:"80%"}} error={error.password} required onChange={(e)=>setPassword(e.target.value)}/><br/>
                         <a className='btn' href="">Forgot password?</a><br/>
                         <div className='submit'>
-                            <button className='btn btn-dark' type='submit' onClick={()=>signIn()}>Submit</button>
+                            <button className='btn btn-dark' type='submit' onClick={signIn}>Submit</button>
                         </div>
                         </div>
+                        </form>
                     </div>
 
                 </div>
                 </div>
 
             </div>
+            <NotificationContainer/>  
         </>
     );
 };

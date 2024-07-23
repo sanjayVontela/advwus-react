@@ -11,7 +11,9 @@ import Signup from './Signup';
 import Profile from './Profile';
 import AddProduct from './AddProduct';
 import OwnProducts from './OwnProducts';
+import Wishlist from './Wishlist'
 import EditProduct from './editProduct';
+import Logout from './Logout';
 
 const RoutesList = () => {
     return (
@@ -28,7 +30,9 @@ const RoutesList = () => {
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/addProduct' element={<AddProduct />} />
                 <Route path='/ownProducts' element={<OwnProducts />} />
+                <Route path='/wishlist' element={<Wishlist />} />
                 <Route path='/editProduct/:id' element={<EditProduct />} />
+                <Route path='/logout' element={<Logout />} />
             </Routes>
         </BrowserRouter>
     );

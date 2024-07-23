@@ -16,6 +16,8 @@
     border-radius: 10px;
     overflow: hidden;
     display: flex;
+    margin-top: 1%;
+    height: 100%;
     /* width: 800px; */
     /* height: 50 */
   }

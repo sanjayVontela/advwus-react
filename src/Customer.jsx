@@ -5,7 +5,7 @@ import "./Customer.css";
 const Customer = () => {
     return (
         <>
-        <Header x="customer"/>
+        <Header x="consumer"/>
             
         </>
     );

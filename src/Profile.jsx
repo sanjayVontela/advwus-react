@@ -159,7 +159,7 @@ function Profile() {
   else{
     return (
       <>
-      <Header x="customer" />
+      <Header x="consumer" />
       <div className='body'>
       <div className="profile-container">
         <div className="profile-details">

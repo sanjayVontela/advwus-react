@@ -7,15 +7,16 @@ import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 
-const AllCustomers = () => {
+const Wishlist = () => {
 
 
     const [data, setData] = useState([])
 
-    function addWishlist(email){
 
-        fetch(`http://localhost:4444/user/addWish/${email}`,{
-            method:"GET",
+    function removeWishlist(id){
+        console.log(id);
+        fetch(`http://localhost:4444/user/deleteWishlist/${id}`,{
+            method:"DELETE",
             credentials:"include",
             headers:{
                 "Content-Type":"application/json"
@@ -23,23 +24,22 @@ const AllCustomers = () => {
         })
         .then(response=>response.json())
         .then(data=>{
-            if(data.message){
-               NotificationManager.success(data.message);
-                // alert(data.message)
-            }else if(data.already){
-                
-                NotificationManager.info(data.already)
-            }
-            else{
-                NotificationManager.error('Internal Server Error');
+            if(data.data){
+                NotificationManager.success(data.message);
+                setData(data.data)
+                // console.log(data);
+            }else{
+                NotificationManager.error(data.error);
+                // alert(data.error)
             }
         })
         .catch(err=>console.error(err))
 
     }
 
+
     useEffect(()=>{
-            fetch("http://localhost:4444/user/allcustomers",{
+            fetch("http://localhost:4444/user/allWishlist",{
                 method:"GET",
                 credentials:"include",
                 headers:{
@@ -49,6 +49,7 @@ const AllCustomers = () => {
             .then(response=>response.json())
             .then(data=>{
                 if(data.data){
+                    // console.log(data.data);
                     setData(data.data)
                 }else{
                     alert(data.error)
@@ -103,7 +104,7 @@ const AllCustomers = () => {
                         <p className='p'>{d.tiktok}</p>
                     </div>
                     <div className='d-flex'>
-                        <Button onClick={()=>addWishlist(d.username)}>WishList</Button>
+                        <Button onClick={()=>removeWishlist(d.username)}>Remove</Button>
                     </div>
                     
                     </Col>
@@ -137,4 +138,4 @@ const AllCustomers = () => {
     );
 }
 
-export default AllCustomers;
+export default Wishlist;

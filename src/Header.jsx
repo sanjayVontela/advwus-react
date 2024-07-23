@@ -41,7 +41,7 @@ function Admin() {
         <Dropdown.Item href="#/action-3" className='drop-item'>Likes/Other</Dropdown.Item>
         <Dropdown.Item href="#/action-3" className='drop-item'>Settings</Dropdown.Item>
         <Dropdown.Divider/>
-        <Dropdown.Item href="#/action-3" className='drop-item'>Logout</Dropdown.Item>
+        <Dropdown.Item href="/logout" className='drop-item'>Logout</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
             </Navbar.Collapse>
@@ -86,7 +86,7 @@ function Customer(){
         <Dropdown.Item href="#/action-3" className='drop-item'>Likes/Other</Dropdown.Item>
         <Dropdown.Item href="#/action-3" className='drop-item'>Settings</Dropdown.Item>
         <Dropdown.Divider/>
-        <Dropdown.Item href="#/action-3" className='drop-item'>Logout</Dropdown.Item>
+        <Dropdown.Item href="/logout" className='drop-item'>Logout</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
             </Navbar.Collapse>
@@ -116,6 +116,7 @@ function Producer(){
                 <Nav.Link className="nav-link" href="/customers">Consumers</Nav.Link>
                 <Nav.Link className="nav-link" href="/ownProducts">All Products</Nav.Link>
                 <Nav.Link className="nav-link" href="/addProduct">Add Product</Nav.Link>
+                <Nav.Link className="nav-link" href="/wishlist">Wishlist</Nav.Link>
                 <Nav.Link className="nav-link" href="/watchList">All Deals</Nav.Link>
             </Nav>
 
@@ -130,7 +131,7 @@ function Producer(){
         <Dropdown.Item href="#/action-3" className='drop-item'>Likes/Other</Dropdown.Item>
         <Dropdown.Item href="#/action-3" className='drop-item'>Settings</Dropdown.Item>
         <Dropdown.Divider/>
-        <Dropdown.Item href="#/action-3" className='drop-item'>Logout</Dropdown.Item>
+        <Dropdown.Item href="/logout" className='drop-item'>Logout</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
             </Navbar.Collapse>
@@ -149,7 +150,7 @@ const Header = (props) => {
     if(props.x === "admin"){
         return <Admin />
     }
-    if(props.x === "customer"){
+    if(props.x === "consumer"){
         return <Customer />
     }
     if(props.x === "producer"){
