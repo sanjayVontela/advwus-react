@@ -3,7 +3,6 @@ import "./AllCustomers.css"
 import Header from './Header';
 import { Col, Container,Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-// import Row from 'react-bootstrap';
 import { useState } from 'react';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 
@@ -11,6 +10,8 @@ const Wishlist = () => {
 
 
     const [data, setData] = useState([])
+    const [error,setError] = useState(false)
+    const [errorMsg, setErrorMsg] = useState("")
 
 
     function removeWishlist(id){
@@ -27,10 +28,8 @@ const Wishlist = () => {
             if(data.data){
                 NotificationManager.success(data.message);
                 setData(data.data)
-                // console.log(data);
             }else{
                 NotificationManager.error(data.error);
-                // alert(data.error)
             }
         })
         .catch(err=>console.error(err))
@@ -49,17 +48,26 @@ const Wishlist = () => {
             .then(response=>response.json())
             .then(data=>{
                 if(data.data){
-                    // console.log(data.data);
                     setData(data.data)
                 }else{
-                    alert(data.error)
+                    // console.log(data.error);
+                    setError(true)
+                    setErrorMsg(data.error)
                 }
             })
             .catch(err=>console.error(err))
     },[])
 
-    // console.log(data);
+    console.log(error);
 
+if(error){
+
+    return (
+
+        <h1>{error}</h1>
+    )
+}
+else{
     return (
         <>
             <Header x="producer"/>
@@ -73,8 +81,6 @@ const Wishlist = () => {
                     <Col md className='col1'>
                     
                     <h3>{d.fname} {d.lname},{d.channelName}</h3>
-                    {/* <h3>{d.channelName}</h3> */}
-                    {/* <p>{d.channelDesc}</p> */}
                     <div>
                         <label className='l'>Advertisement Catrgory:</label>
                         <p className='p'>{d.how}</p>
@@ -86,9 +92,6 @@ const Wishlist = () => {
                         
                    
                     </Col>
-                    {/* <div class="vl"></div> */}
-                    
-                    {/* <div class="vl"></div> */}
                     <Col md xs={12} className='col1'>
                     
                     <div>
@@ -108,24 +111,6 @@ const Wishlist = () => {
                     </div>
                     
                     </Col>
-                    {/* <Col md className='col1'>
-                    
-                    <div class="d-flex">
-                        <h6>Advertising Category:&nbsp;</h6><p>Sanjay</p>
-                    </div>
-                    <div class="d-flex">
-                        <h6>Online/Offline:&nbsp;</h6><p>Sanjay</p>
-                    </div>
-                        <div class="d-flex">
-                        <h6>Specializations:&nbsp;</h6><p>Sanjay</p>
-                    </div>
-                        <div class="d-flex">
-                        <h6>Social Media/Offline Accounts:&nbsp;</h6><p>Sanjay</p>
-                    </div>
-                    <div className='d-flex'>
-                        <Button>WishList</Button>
-                    </div>
-                    </Col> */}
                 </Row>
 
                     )
@@ -136,6 +121,10 @@ const Wishlist = () => {
             
         </>
     );
+}
+    
+
+    
 }
 
 export default Wishlist;

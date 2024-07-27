@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import "./AllCustomers.css"
+import "./OwnProducts.css"
 import Header from './Header';
 import { Col, Container,Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
@@ -7,8 +7,6 @@ import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
-
-// import Row from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 const AllProducts = () => {
@@ -43,15 +41,12 @@ const AllProducts = () => {
         })
         .then(response=>response.json())
         .then(data=>{
-            // console.log(data);
             if(data.message){
                 NotificationManager.success(data.message);
                 setData(data.data.data)
-                // window.location.reload();
             }
             else{
                 NotificationManager.error(data.error);
-                // alert(data.error);
             }
         })
         
@@ -70,7 +65,7 @@ const AllProducts = () => {
             {data.map((d)=>{
                 return (
 
-                    <Row className='main-content1'>
+                    <Row className='main-content2'>
                     <Col md xs={12} className='col1'>
                     
                     <h3>{d.productName}</h3>
@@ -95,6 +90,7 @@ const AllProducts = () => {
                     </Col>
                     <Col md={2} xs={12} className='col1'>
                     
+                    <div>
                     <div className='d-flex'>
                         <Button onClick={()=>updateItem(d._id)}>Edit <FontAwesomeIcon icon={faEdit}/></Button>
 
@@ -102,6 +98,7 @@ const AllProducts = () => {
                     <br/>
                     <div className='d-flex'>
                         <Button onClick={()=>deleteItem(d._id)}>Delete <FontAwesomeIcon icon={faTrash}/></Button>
+                    </div>
                     </div>
                     </Col>
                 </Row>
