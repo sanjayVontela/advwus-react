@@ -53,10 +53,10 @@ const Login = () => {
         .then(data=>{
             if(data.user){
                 if(data.user.role == "producer"){
-                    navigate("/producer")
+                    navigate("/customers")
                 }
                 else{
-                    navigate("/customer")
+                    navigate("/producers")
                 }
             }
             else{

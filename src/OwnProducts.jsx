@@ -65,8 +65,8 @@ const AllProducts = () => {
             {data.map((d)=>{
                 return (
 
-                    <Row className='main-content2'>
-                    <Col md xs={12} className='col1'>
+                    <Row className='main-content-customers'>
+                    <Col md xs={12} className='col-customers'>
                     
                     <h3>{d.productName}</h3>
                     <p>{d.productDesc}</p>
@@ -88,7 +88,7 @@ const AllProducts = () => {
                     </div>
                     
                     </Col>
-                    <Col md={2} xs={12} className='col1'>
+                    <Col md={2} xs={12} className='col-customers'>
                     
                     <div>
                     <div className='d-flex'>

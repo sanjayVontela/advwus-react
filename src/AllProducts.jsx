@@ -46,14 +46,14 @@ const AllProducts = () => {
         {data.map((d)=>{
             return (
 
-                <Row className='main-content1'>
-                <Col md xs={12} className='col1'>
+                <Row className='main-content-customers'>
+                <Col md xs={12} className='col-customers'>
                 
                 <h3>{d.productName}</h3>
                 <p>{d.productDesc}</p>
                 </Col>
                 
-                <Col md xs={12} className='col1'>
+                <Col md xs={12} className='col-customers'>
                 
                 <div>
                     <label className='l'>Product Catrgory:</label>

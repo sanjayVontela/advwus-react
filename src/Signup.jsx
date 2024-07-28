@@ -79,12 +79,20 @@ const Signup = () => {
                                 <legend>Where can you advertise:</legend>
 
                                 <div>
-                                    <input type="checkbox" id="youtube" name="youtube"  onClick={(e)=>how(e.target.id)}/>
+                                    <input type="checkbox" id="Youtube" name="youtube"  onClick={(e)=>how(e.target.id)}/>
                                     <label for="youtube">Youtube</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="Instagram" name="instagram"  onClick={(e)=>how(e.target.id)}/>
+                                    <label for="youtube">Instagram</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="Tiktok" name="tiktok"  onClick={(e)=>how(e.target.id)}/>
+                                    <label for="youtube">Tiktok</label>
                                 </div>
 
                                 <div>
-                                    <input type="checkbox" id="events" name="events" onClick={(e)=>how(e.target.id)}/>
+                                    <input type="checkbox" id="Events" name="events" onClick={(e)=>how(e.target.id)}/>
                                     <label for="horns">Events</label>
                                 </div>
                                 </fieldset>
@@ -123,30 +131,7 @@ const Signup = () => {
             <>
                 <TextField type="string" label="Organization's Name" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} error={error.organizatonName}  required onChange={(e) => setData({...data, organizatonName:e.target.value})} /><br />
                 <TextField type="string" label="Bio about organization" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} error={error.organizationBio}  required onChange={(e) => setData({...data, organizationBio:e.target.value})} /><br />
-                {/* <TextField type="string" label="Product Name" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} required onChange={(e)=>setData({...data, productName:e.target.value})} /><br />
-                <Select
-        className='select'
-        displayEmpty
-        sx={{ margin: "2% auto", width: "80%" }}
-        onChange={(e) => setData({ ...data, productType: e.target.value })}
-        value={data.productType}  // Ensure value is always defined
-        required
-      >
-        <MenuItem value="" disabled>Select Product Type</MenuItem>
-        {options.map(option => (
-          <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
-        ))}
-      </Select>
-                <TextField type="string" label="Product Description" variant="outlined" sx={{ margin: "2% auto", width: "80%" }} required onChange={(e)=>setData({...data, productDesc:e.target.value})} /><br />
-                <Box sx={{ width: 300 }}>
-                <Slider
-                    getAriaLabel={() => 'Budget Range $'}
-                    value={value}
-                    onChange={handleChange}
-                    valueLabelDisplay="auto"
-                    getAriaValueText={valuetext}
-                />
-                </Box> */}
+               
             </>
         );
     }

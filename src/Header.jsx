@@ -62,14 +62,13 @@ function Customer(){
 
             <Navbar bg="dark" variant="dark" expand="lg" style={{marginTop:"0%"}}>
             <Container fluid>
-            <Navbar.Brand href="/" style={{"color":"green"}}>
+            <Navbar.Brand href="/producers" style={{"color":"green"}}>
                 <FontAwesomeIcon icon={faVideoSlash} />Advwus
             </Navbar.Brand>
             <Navbar.Toggle aria-controlls="navbar-scroll" />
             <Navbar.Collapse id="navbarScroll">
             <Nav className="me-auto my-2 my-lg-0" style={{maxHeight:'100px'}} navbarScroll>
-                <Nav.Link className="nav-link" href="/customer">Home</Nav.Link>
-                <Nav.Link className="nav-link" href="/producers">Products</Nav.Link>
+                <Nav.Link className="nav-link" href="/producers">Home</Nav.Link>
                 <Nav.Link className="nav-link" href="/watchList">All Deals</Nav.Link>
                 
 
@@ -106,14 +105,13 @@ function Producer(){
 
             <Navbar bg="dark" variant="dark" expand="lg" style={{marginTop:"0%"}}>
             <Container fluid>
-            <Navbar.Brand href="/" style={{"color":"green"}}>
+            <Navbar.Brand href="/customers" style={{"color":"green"}}>
                 <FontAwesomeIcon icon={faVideoSlash} />Advwus
             </Navbar.Brand>
             <Navbar.Toggle aria-controlls="navbar-scroll" />
             <Navbar.Collapse id="navbarScroll">
             <Nav className="me-auto my-2 my-lg-0" style={{maxHeight:'100px'}} navbarScroll>
-                <Nav.Link className="nav-link" href="/producer">Home</Nav.Link>
-                <Nav.Link className="nav-link" href="/customers">Consumers</Nav.Link>
+                <Nav.Link className="nav-link" href="/customers">Home</Nav.Link>
                 <Nav.Link className="nav-link" href="/ownProducts">All Products</Nav.Link>
                 <Nav.Link className="nav-link" href="/addProduct">Add Product</Nav.Link>
                 <Nav.Link className="nav-link" href="/wishlist">Wishlist</Nav.Link>

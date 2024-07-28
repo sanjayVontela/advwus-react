@@ -16,18 +16,18 @@ const Index = () => {
                     </div>
                     <div className='col-md-4 menu-main'>
                         <div className='menu'>
-                            <Link to="/login" className='btn'>Login</Link>
-                            <Link to="/signup" className='btn'>Sign Up</Link>
-                            <Link to="/login" className='btn'>Story of Advwus</Link>
-                            <Link to="/login" className='btn'>FAQ</Link>
-                            <Link to="/login" className='btn'>About Us</Link>
-                            <Link to="/login" className='btn'>Suggestion Box</Link>
+                            <Link to="/login" className='btn' style={{color:"white"}}>Login</Link>
+                            <Link to="/signup" className='btn' style={{color:"white"}}>Sign Up</Link>
+                            <Link to="/login" className='btn' style={{color:"white"}}>Story of Advwus</Link>
+                            <Link to="/login" className='btn'  style={{color:"white"}}>FAQ</Link>
+                            <Link to="/login" className='btn'  style={{color:"white"}}>About Us</Link>
+                            <Link to="/login" className='btn'  style={{color:"white"}}>Suggestion Box</Link>
                             {/* <button className="btn">Login</button><br/> */}
                             
                             <div>
-                                <a className="social" href="https://twitter.com/vontelasanjay"><FontAwesomeIcon icon={faFacebookF}/></a>
-                                <a className="social" href="https://twitter.com/vontelasanjay"><FontAwesomeIcon icon={faTwitter}/></a>
-                                <a className="social" href="https://twitter.com/vontelasanjay"><FontAwesomeIcon icon={faInstagram}/></a>
+                                <a className="social" href="https://twitter.com/vontelasanjay"><FontAwesomeIcon  style={{color:"white"}} icon={faFacebookF}/></a>
+                                <a className="social" href="https://twitter.com/vontelasanjay"><FontAwesomeIcon  style={{color:"white"}} icon={faTwitter}/></a>
+                                <a className="social" href="https://twitter.com/vontelasanjay"><FontAwesomeIcon  style={{color:"white"}} icon={faInstagram}/></a>
                             </div>
 
 

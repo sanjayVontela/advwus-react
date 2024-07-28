@@ -14,9 +14,20 @@ import OwnProducts from './OwnProducts';
 import Wishlist from './Wishlist'
 import EditProduct from './editProduct';
 import Logout from './Logout';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+
 
 const RoutesList = () => {
+    const darkTheme = createTheme({
+        palette: {
+          mode:  'dark',
+        },
+      });
+    
     return (
+        <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<Index />} />
@@ -35,6 +46,7 @@ const RoutesList = () => {
                 <Route path='/logout' element={<Logout />} />
             </Routes>
         </BrowserRouter>
+        </ThemeProvider>
     );
 }
 

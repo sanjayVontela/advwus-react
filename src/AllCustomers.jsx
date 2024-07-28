@@ -4,7 +4,9 @@ import Header from './Header';
 import { Col, Container, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faYoutube,faInstagram,faTiktok,faRocketchat } from '@fortawesome/free-brands-svg-icons';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 const AllCustomers = () => {
     const [data, setData] = useState([]);
     const [error, setError] = useState(false);
@@ -55,14 +57,21 @@ const AllCustomers = () => {
         return <h1>{errorMsg}</h1>;
     }
 
+    // console.log(data);/
+
     return (
         <>
             <Header x="producer" />
             <Container fluid>
                 {data.map(d => (
-                    <Row className='main-content1' key={d.username}>
-                        <Col md className='col1'>
-                            <h3>{d.fname} {d.lname}, {d.channelName}</h3>
+                    <Row className='main-content-customers' key={d.username}>
+                        <Col md className='col-customers'>
+                            <div className='profile-picture1'>
+                                <h3>{d.fname} {d.lname}, {d.channelName}</h3>
+                                <img src={d.profilePic} alt="Avatar" />
+                            </div>
+                        </Col>
+                        <Col md className='col-customers'>
                             <div>
                                 <label className='l'>Advertisement Category:</label>
                                 <p className='p'>{d.how}</p>
@@ -72,21 +81,27 @@ const AllCustomers = () => {
                                 <p className='p'>{d.where.join()}</p>
                             </div>
                         </Col>
-                        <Col md className='col1'>
+                        <Col md className='col-customers'>
                             <div>
-                                <label className='l'>YouTube:</label>
-                                <p className='p'>{d.youtube}</p>
+                                <a href={d.youtube} target="_blank" rel="noopener noreferrer">
+                                    <FontAwesomeIcon style={{fontSize:"50px"}} className='icon' icon={faYoutube} />
+                                </a>
+                                <a href={d.insta} target="_blank" rel="noopener noreferrer">
+                                    <FontAwesomeIcon style={{fontSize:"50px"}} className='icon' icon={faInstagram} />
+                                </a>
+                                <a href={d.tiktok} target="_blank" rel="noopener noreferrer">
+                                    <FontAwesomeIcon style={{fontSize:"50px"}} className='icon' icon={faTiktok} />
+                                </a>
                             </div>
-                            <div>
-                                <label className='l'>Instagram:</label>
-                                <p className='p'>{d.insta}</p>
-                            </div>
-                            <div>
-                                <label className='l'>TikTok:</label>
-                                <p className='p'>{d.tiktok}</p>
-                            </div>
+                            <div></div>
+                            <div></div>
                             <div className='d-flex'>
-                                <Button onClick={() => addWishlist(d.username)}>WishList</Button>
+                                <Button className='icon' onClick={() => addWishlist(d.username)}>
+                                    <FontAwesomeIcon icon={faHeart} />Wishlist
+                                </Button>
+                                <Button className='icon' onClick={() => addWishlist(d.username)}>
+                                    <FontAwesomeIcon icon={faRocketchat} />Chat
+                                </Button>
                             </div>
                         </Col>
                     </Row>
@@ -95,6 +110,7 @@ const AllCustomers = () => {
             <NotificationContainer />
         </>
     );
-}
+    
+}    
 
 export default AllCustomers;

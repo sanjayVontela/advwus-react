@@ -7,11 +7,11 @@
     align-items: center;
     height: 100vh;
     /* width: 100vh; */
-    background-color: #f0f0f0;
+    /* background-color: #f0f0f0; */
   }
   
   .profile-container {
-    background-color: white;
+    background-color: dimgray;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
@@ -69,7 +69,7 @@
   .profile-picture {
     position: relative;
     width: 300px;
-    background-color: #f0f0f0;
+    background-color:grey;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -1,30 +1,43 @@
-.main-content1 {
+.main-content-customers {
     margin: 10px; 
     padding: 20px;
     background-color: #000;
     border-radius: 25px;
     display: flex;
-    flex-wrap: wrap;
-    align-items: stretch; 
-    /* justify-content: center; */
+    /* align-items: stretch; */
 }
+
 
 h3, h6, p {
     color: white;
 }
 
-.col1 {
+
+  .profile-picture1 img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+   float: right;
+
+  }
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+  .col-customers{
     border-radius: 25px;
     padding: 10px;
-    margin: 2px;
     background-color: #131B23;
-    flex: 1 1 100%; /* default to 100% width for small screens */
-    max-width: 100%; /* ensure it doesn’t exceed 100% */
+    flex: 1;
     box-sizing: border-box;
     display: flex;
-    flex-direction: column; /* Ensure content is stacked vertically */
-    justify-content: space-between; /* Ensure equal spacing for children */
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 4px;
 }
+
+
 
 .l {
     color: white;
@@ -48,3 +61,7 @@ h3, h6, p {
     align-items: center;
     margin-top: 10px;
 }
+.icon{
+    margin: 2px;
+}
+
