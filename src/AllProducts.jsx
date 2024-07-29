@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import "./AllCustomers.css"
 import Header from './Header';
-import { Col, Container,Row } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
+
+import LoadingComponent from './components/LoadingComponent';
+import Pagination from './components/Pagination';
+import AllProductsPosts from './components/AllProductsPosts';
+
+import Sidebar from './components/filter/Sidebar';
 
 const AllProducts = () => {
 
@@ -11,7 +15,13 @@ const AllProducts = () => {
     const [error,setError]  = useState({
         msg:"", e:false
     })
-
+    
+    const [loading, setLoading] = useState(true)
+    const [errorMsg, setErrorMsg] = useState("")
+    const [currentPage, setCurrentPage] = useState(1);
+    const [PostsperPage, setPostsPerPage] = useState(10);
+    const [submit, setSubmit] = useState({})
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     useEffect(()=>{
 
@@ -26,56 +36,35 @@ const AllProducts = () => {
         .then(data=>{
             if(data.data){
                 setData(data.data)
+                setLoading(false)
             }
             else{
                 setError({msg:data.error, e:true })
+                setLoading(false)
             }
         })
 
     },[])
+    const indexOfLastPost = currentPage*PostsperPage;
+    const indexOfFirstPost = indexOfLastPost-PostsperPage;
+    const currentPosts = data.slice(indexOfFirstPost,indexOfLastPost);
 
     // console.log(data);
 
     if(error.e){
         return <h1>{error.msg}</h1>
     }
+    if(loading){
+        <LoadingComponent />
+    }
+    console.log(submit);
     return (
         <>
         <Header x="consumer"/>
-
-        {data.map((d)=>{
-            return (
-
-                <Row className='main-content-customers'>
-                <Col md xs={12} className='col-customers'>
-                
-                <h3>{d.productName}</h3>
-                <p>{d.productDesc}</p>
-                </Col>
-                
-                <Col md xs={12} className='col-customers'>
-                
-                <div>
-                    <label className='l'>Product Catrgory:</label>
-                    <p className='p'>{d.productType}</p>
-                </div>
-                <div>
-                <label className='l'>Online/Offline:</label>
-                <p className='p'>{d.how}</p>
-                </div>
-                    <div>
-                    <label className='l'>Budget:</label>
-                    <p className='p'>{`From $${d.range[0]} to $${d.range[1]}`}</p>
-                </div>
-                <div>
-                    <Button>Connect</Button>
-                </div>
-                </Col>
-               
-            </Row>
-
-            )
-        })}         
+        {/* <Sidebar setSubmit={setSubmit} /> */}
+        <AllProductsPosts data={currentPosts} />
+        <Pagination postsPerPage={PostsperPage} totalPosts={data.length} paginate={paginate} />
+       
     </>
     );
 }

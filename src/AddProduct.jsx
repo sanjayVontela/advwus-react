@@ -47,7 +47,7 @@ const AddProduct = () => {
         .then(data=>{
           if(data.message){
             alert(data.message);
-            navigate("/producer");
+            navigate("/ownProducts");
           }else{
             alert(data.error);
           }

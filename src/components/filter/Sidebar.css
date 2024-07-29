@@ -1,0 +1,27 @@
+.sidebar-filter{
+
+    float: left;
+    width: 10%;
+    height: 100dvh;
+    background-color: dimgray;
+}
+
+.icon-sidebar{
+    
+    color: black;
+    font-size: 40px;
+}
+
+.button-sidebar{
+    float: right;
+}
+
+input[type=checkbox] { 
+    vertical-align: middle; 
+    position: relative; 
+    bottom: 1px; 
+} 
+  
+label { 
+    display: block; 
+} 

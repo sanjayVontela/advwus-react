@@ -6,9 +6,45 @@ import { faVideoSlash } from '@fortawesome/free-solid-svg-icons';
 import { Nav,Button } from 'react-bootstrap';
 import { Dropdown } from 'react-bootstrap';
 import { faMessage,faBell } from '@fortawesome/free-solid-svg-icons';
+import { faBars,faClose } from '@fortawesome/free-solid-svg-icons';
+
+const Sidebar = () => {
+    return (
+        <div className="navList">
+        <li onClick={
+          () => {
+            document.getElementsByClassName("navList")[0].style.transform = "translateX(-120%)";
+          }
+        }><FontAwesomeIcon icon={faClose}/></li>
+        <li>Student</li>
+        <li>
+          <a href="">Profile</a>
+        </li>
+        <li>
+          <a href="../Student/StudentHome.jsx">Dashboard</a>
+        </li>
+        <li>
+          <a href="StudentCourses.jsx">Courses</a>
+        </li>
+        <li>
+          <a href="">Exams</a>
+        </li>
+        <li>
+          <a href="">Feedback</a>
+        </li>
+        <li>
+          <a href="">Chat</a>
+        </li><br />
+        <li><a href="" className="signOut">Sign Out</a></li>
+    </div>
+
+    );
+}
 
 
 function Admin() {
+
+    
 
     return (
         <>
@@ -70,6 +106,7 @@ function Customer(){
             <Nav className="me-auto my-2 my-lg-0" style={{maxHeight:'100px'}} navbarScroll>
                 <Nav.Link className="nav-link" href="/producers">Home</Nav.Link>
                 <Nav.Link className="nav-link" href="/watchList">All Deals</Nav.Link>
+
                 
 
             </Nav>
@@ -144,7 +181,6 @@ function Producer(){
 }
 
 const Header = (props) => {
-
     if(props.x === "admin"){
         return <Admin />
     }

@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import "./OwnProducts.css"
 import Header from './Header';
-import { Col, Container,Row } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
-import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import { useNavigate } from 'react-router-dom';
-
+import LoadingComponent from './components/LoadingComponent';
+import Pagination from './components/Pagination';
+import OwnProductsPosts from './components/OwnProductsPosts';
 const AllProducts = () => {
 
     const [data,setData] = useState([])
+    const [error,setError] = useState({
+        e:false,msg:""
+    })
+    const [currentPage, setCurrentPage] = useState(1);
+    const [PostsperPage, setPostsPerPage] = useState(5);
+    const [loading, setLoading] = useState(true)
+    
 
     const navigate = useNavigate();
     useEffect(()=>{
@@ -24,10 +28,22 @@ const AllProducts = () => {
             },
         })
         .then(response=>response.json())
-        .then(data=>setData(data.data))
+        .then(data=>{
+            if(data.data){
+                setData(data.data)
+                setLoading(false)
+            }
+            else{
+                setError({... error, e:true,msg:data.error})
+                setLoading(false)
+            }
+            
+        })
         .catch  (error=>console.error(error))
     },[])
-    console.log(data);
+    const indexOfLastPost = currentPage*PostsperPage;
+    const indexOfFirstPost = indexOfLastPost-PostsperPage;
+    const currentPosts = data.slice(indexOfFirstPost,indexOfLastPost);
     
     function deleteItem(itemId){
         console.log(itemId);
@@ -52,59 +68,26 @@ const AllProducts = () => {
         
     }
 
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
     function updateItem(item){
 
         navigate(`/editProduct/${item}`)
     }
 
+    if(error.e){
+        return <h1>{error.msg}</h1>
+    }
+    if(loading){
+        return <LoadingComponent />
+    }
 
     return (
         <>
             <Header x="producer"/>
-
-            {data.map((d)=>{
-                return (
-
-                    <Row className='main-content-customers'>
-                    <Col md xs={12} className='col-customers'>
-                    
-                    <h3>{d.productName}</h3>
-                    <p>{d.productDesc}</p>
-                    </Col>
-                    
-                    <Col md xs={12} className='col1'>
-                    
-                    <div>
-                        <label className='l'>Product Catrgory:</label>
-                        <p className='p'>{d.productType}</p>
-                    </div>
-                    <div>
-                    <label className='l'>Online/Offline:</label>
-                    <p className='p'>{d.how}</p>
-                    </div>
-                        <div>
-                        <label className='l'>Budget:</label>
-                        <p className='p'>{`From $${d.range[0]} to $${d.range[1]}`}</p>
-                    </div>
-                    
-                    </Col>
-                    <Col md={2} xs={12} className='col-customers'>
-                    
-                    <div>
-                    <div className='d-flex'>
-                        <Button onClick={()=>updateItem(d._id)}>Edit <FontAwesomeIcon icon={faEdit}/></Button>
-
-                    </div>
-                    <br/>
-                    <div className='d-flex'>
-                        <Button onClick={()=>deleteItem(d._id)}>Delete <FontAwesomeIcon icon={faTrash}/></Button>
-                    </div>
-                    </div>
-                    </Col>
-                </Row>
-
-                )
-            })}  
+            <OwnProductsPosts data={currentPosts} updateItem={updateItem} deleteItem={deleteItem} />
+            <Pagination postsPerPage={PostsperPage} totalPosts={data.length} paginate={paginate}/>
+           
             <NotificationContainer/>          
         </>
     );

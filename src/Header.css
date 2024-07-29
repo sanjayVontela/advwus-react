@@ -1,0 +1,22 @@
+.navList li {
+    color: rgb(180, 180, 180);
+    list-style: none;
+    margin-left: none;
+    font-size: xxx-large;
+    font-weight: 600;
+    padding: 0.1rem 2rem;
+  
+}
+
+.navList {
+    width: 300px;
+    /* padding: 3%; */
+    /* padding: 15%; */
+    /* position: fixed; */
+    background-color: rgba(50, 50, 50, 1);
+    height: 200%;
+    /* transform: translateX(-120%); */
+    /* transform: translateX(-2000px); */
+    float: left;
+    height: 100vh;
+}
