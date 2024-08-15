@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'react-notifications/lib/notifications.css';
+import "react-chat-elements/dist/main.css"
 import reportWebVitals from './reportWebVitals';
 import RoutesList from './Routes';
 

@@ -1,8 +1,12 @@
 import React from 'react';
 import { Col, Container,Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
+import { useNavigate } from 'react-router-dom';
 
 const AllProductsPosts = ({data}) => {
+
+    const navigate = useNavigate();
+
     return (
         <div>
              {data.map((d)=>{
@@ -30,7 +34,7 @@ const AllProductsPosts = ({data}) => {
                     <p className='p'>{`From $${d.range[0]} to $${d.range[1]}`}</p>
                 </div>
                 <div>
-                    <Button>Connect</Button>
+                    <Button onClick={()=>navigate(`/chat/${d.userId}`)}>Connect</Button>
                 </div>
                 </Col>
                

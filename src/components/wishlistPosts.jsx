@@ -4,7 +4,9 @@ import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube,faInstagram,faTiktok,faRocketchat } from '@fortawesome/free-brands-svg-icons';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 const WishlistPosts = ({data,page,removeWishlist,addWishlist}) => {
+    const navigate = useNavigate()
     return (
         <>
              <Container fluid>
@@ -45,14 +47,14 @@ const WishlistPosts = ({data,page,removeWishlist,addWishlist}) => {
                                <Button className='icon' onClick={() => addWishlist(d.username)}>
                                    <FontAwesomeIcon icon={faHeart} />Wishlist
                                </Button>
-                               <Button className='icon' onClick={() => addWishlist(d.username)}>
+                               <Button className='icon' onClick={() => navigate(`/chat/${d._id}`)}>
                                    <FontAwesomeIcon icon={faRocketchat} />Chat
                                </Button>
                            </div>):( <div className='d-flex'>
                             <Button className='icon' onClick={() => removeWishlist(d.username)}>
                                 <FontAwesomeIcon icon={faHeart} />Remove
                             </Button>
-                            <Button className='icon' onClick={() => removeWishlist(d.username)}>
+                            <Button className='icon' onClick={() => navigate(`/chat/${d._id}`)}>
                                 <FontAwesomeIcon icon={faRocketchat} />Chat
                             </Button>
                         </div>)

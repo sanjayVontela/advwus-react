@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar, NavItem, NavLink} from 'react-bootstrap';
 import {Container} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,41 +8,8 @@ import { Dropdown } from 'react-bootstrap';
 import { faMessage,faBell } from '@fortawesome/free-solid-svg-icons';
 import { faBars,faClose } from '@fortawesome/free-solid-svg-icons';
 
-const Sidebar = () => {
-    return (
-        <div className="navList">
-        <li onClick={
-          () => {
-            document.getElementsByClassName("navList")[0].style.transform = "translateX(-120%)";
-          }
-        }><FontAwesomeIcon icon={faClose}/></li>
-        <li>Student</li>
-        <li>
-          <a href="">Profile</a>
-        </li>
-        <li>
-          <a href="../Student/StudentHome.jsx">Dashboard</a>
-        </li>
-        <li>
-          <a href="StudentCourses.jsx">Courses</a>
-        </li>
-        <li>
-          <a href="">Exams</a>
-        </li>
-        <li>
-          <a href="">Feedback</a>
-        </li>
-        <li>
-          <a href="">Chat</a>
-        </li><br />
-        <li><a href="" className="signOut">Sign Out</a></li>
-    </div>
 
-    );
-}
-
-
-function Admin() {
+function Admin({fname}) {
 
     
 
@@ -69,7 +36,7 @@ function Admin() {
             <Button variant='dark'><FontAwesomeIcon icon={faMessage}/></Button>
             <Button variant='dark'><FontAwesomeIcon icon={faBell}/></Button>
             <Dropdown align='end'>
-      <Dropdown.Toggle variant='dark' id="dropdown-basic">User</Dropdown.Toggle>
+      <Dropdown.Toggle variant='dark' id="dropdown-basic">{fname}</Dropdown.Toggle>
 
       <Dropdown.Menu>
         <Dropdown.Item href="/profile" className='drop-item'>Profile</Dropdown.Item>
@@ -91,7 +58,7 @@ function Admin() {
     
 }
 
-function Customer(){
+function Customer({fname}){
 
     return (
         <>
@@ -114,7 +81,7 @@ function Customer(){
             <Button variant='dark'><FontAwesomeIcon icon={faMessage}/></Button>
             <Button variant='dark'><FontAwesomeIcon icon={faBell}/></Button>
             <Dropdown align='end'>
-      <Dropdown.Toggle variant='dark' id="dropdown-basic">User</Dropdown.Toggle>
+      <Dropdown.Toggle variant='dark' id="dropdown-basic">{fname}</Dropdown.Toggle>
 
       <Dropdown.Menu>
         <Dropdown.Item href="/profile" className='drop-item'>Profile</Dropdown.Item>
@@ -136,7 +103,7 @@ function Customer(){
 
 }
 
-function Producer(){
+function Producer({fname}){
     return (
         <>
 
@@ -158,7 +125,7 @@ function Producer(){
             <Button variant='dark'><FontAwesomeIcon icon={faMessage}/></Button>
             <Button variant='dark'><FontAwesomeIcon icon={faBell}/></Button>
             <Dropdown align='end'>
-      <Dropdown.Toggle variant='dark' id="dropdown-basic">User</Dropdown.Toggle>
+      <Dropdown.Toggle variant='dark' id="dropdown-basic">{fname}</Dropdown.Toggle>
 
       <Dropdown.Menu>
         <Dropdown.Item href="/profile" className='drop-item'>Profile</Dropdown.Item>
@@ -181,14 +148,23 @@ function Producer(){
 }
 
 const Header = (props) => {
+
+    const [fname, setFname] = useState("");
+    useEffect(()=>{
+
+      setFname(localStorage.getItem("fname"))
+      
+
+    })
+
     if(props.x === "admin"){
-        return <Admin />
+        return <Admin fname={fname} />
     }
     if(props.x === "consumer"){
-        return <Customer />
+        return <Customer fname={fname} />
     }
     if(props.x === "producer"){
-        return <Producer />
+        return <Producer fname={fname} />
     }
     
 }

@@ -9,6 +9,7 @@ import Producer from './Producer';
 import Admin from './Admin';
 import Signup from './Signup';
 import Profile from './Profile';
+import Chat from './components/Chat';
 import AddProduct from './AddProduct';
 import OwnProducts from './OwnProducts';
 import Wishlist from './Wishlist'
@@ -39,6 +40,7 @@ const RoutesList = () => {
                 <Route path='/admin' element={<Admin />} />
                 <Route path='/signup' element={<Signup />} />
                 <Route path='/profile' element={<Profile />} />
+                <Route path='/chat/:id' element={<Chat />} />
                 <Route path='/addProduct' element={<AddProduct />} />
                 <Route path='/ownProducts' element={<OwnProducts />} />
                 <Route path='/wishlist' element={<Wishlist />} />

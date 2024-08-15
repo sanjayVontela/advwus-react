@@ -21,6 +21,8 @@ const Logout = () => {
             navigate("/")
         }}})
         .catch(error=>console.error(error))
+
+        localStorage.clear()
     })
 
     return (

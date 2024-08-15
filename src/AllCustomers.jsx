@@ -72,7 +72,7 @@ const AllCustomers = () => {
     return (
         <>
             <Header x="producer" />
-            <WishlistPosts data={currentPosts} page="AllCustomers"/>
+            <WishlistPosts data={currentPosts} page="AllCustomers" addWishlist={addWishlist}/>
             <Pagination postsPerPage={PostsperPage} totalPosts={data.length} paginate={paginate}/>
             <NotificationContainer />
         </>
