@@ -29,6 +29,8 @@ const AllProducts = () => {
         })
         .then(response=>response.json())
         .then(data=>{
+            console.log(data);
+            
             if(data.data){
                 setData(data.data)
                 setLoading(false)

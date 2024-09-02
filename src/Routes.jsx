@@ -17,7 +17,7 @@ import EditProduct from './editProduct';
 import Logout from './Logout';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-
+import AuthContext from './AuthContext';
 
 const RoutesList = () => {
     const darkTheme = createTheme({
@@ -30,8 +30,11 @@ const RoutesList = () => {
         <ThemeProvider theme={darkTheme}>
       <CssBaseline />
         <BrowserRouter>
+        <Routes>
+        <Route path='/' element={<Index />} />
+        </Routes>
+        <AuthContext>
             <Routes>
-                <Route path='/' element={<Index />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/customers' element={<AllCustomers />} />
                 <Route path='/producers' element={<AllProducts />} />
@@ -47,6 +50,7 @@ const RoutesList = () => {
                 <Route path='/editProduct/:id' element={<EditProduct />} />
                 <Route path='/logout' element={<Logout />} />
             </Routes>
+            </AuthContext>
         </BrowserRouter>
         </ThemeProvider>
     );
