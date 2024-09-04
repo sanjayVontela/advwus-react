@@ -7,8 +7,12 @@ import { Nav,Button } from 'react-bootstrap';
 import { Dropdown } from 'react-bootstrap';
 import { faMessage,faBell } from '@fortawesome/free-solid-svg-icons';
 import { faBars,faClose } from '@fortawesome/free-solid-svg-icons';
-
-
+import { AuthState } from './AuthContext';
+import { useNavigate } from 'react-router-dom';
+import Badge from '@mui/material/Badge';
+// const { userId, setUserId,notification,setNotification } = AuthState();
+import NotificationBadge from 'react-notification-badge';
+import {Effect} from 'react-notification-badge';
 function Admin({fname}) {
 
     
@@ -59,7 +63,8 @@ function Admin({fname}) {
 }
 
 function Customer({fname}){
-
+    const { userId, setUserId,notification,setNotification } = AuthState();
+    const navigate = useNavigate();
     return (
         <>
 
@@ -78,8 +83,24 @@ function Customer({fname}){
 
             </Nav>
 
-            <Button variant='dark'><FontAwesomeIcon icon={faMessage}/></Button>
-            <Button variant='dark'><FontAwesomeIcon icon={faBell}/></Button>
+            <Button variant='dark' onClick={()=>navigate("/chat")}> <NotificationBadge count={notification.length} effect={Effect.SCALE} /><FontAwesomeIcon icon={faMessage}/></Button>
+            
+            {/* <Button variant='dark'><FontAwesomeIcon icon={faBell}/></Button> */}
+            <Dropdown align='end'>
+            <Dropdown.Toggle variant='dark' id="dropdown-basic"><FontAwesomeIcon icon={faBell}/></Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                <Dropdown.Item  className='drop-item'>{!notification.length && 'No new messages'}</Dropdown.Item>
+                {notification.map(n=>{
+                    return(
+                        <Dropdown.Item  className='drop-item'>{`New Notification from ${n.name}`}</Dropdown.Item>
+                    )
+                })}
+                
+                </Dropdown.Menu>
+                            </Dropdown>
+
+            
             <Dropdown align='end'>
       <Dropdown.Toggle variant='dark' id="dropdown-basic">{fname}</Dropdown.Toggle>
 
@@ -104,6 +125,8 @@ function Customer({fname}){
 }
 
 function Producer({fname}){
+    const { userId, setUserId,notification,setNotification } = AuthState();
+    const navigate = useNavigate();
     return (
         <>
 
@@ -122,8 +145,20 @@ function Producer({fname}){
                 <Nav.Link className="nav-link" href="/watchList">All Deals</Nav.Link>
             </Nav>
 
-            <Button variant='dark'><FontAwesomeIcon icon={faMessage}/></Button>
-            <Button variant='dark'><FontAwesomeIcon icon={faBell}/></Button>
+            <Button variant='dark' onClick={()=>navigate("/chat")}><FontAwesomeIcon icon={faMessage}/></Button>
+            <Dropdown align='end'>
+            <Dropdown.Toggle variant='dark' id="dropdown-basic"><NotificationBadge count={notification.length} effect={Effect.SCALE} /><FontAwesomeIcon icon={faBell}/></Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                <Dropdown.Item  className='drop-item'>{!notification.length && 'No new messages'}</Dropdown.Item>
+                {notification.map(n=>{
+                    return(
+                        <Dropdown.Item href={`/chat/${n.sender}`}  className='drop-item'>{`New Message from ${n.name}`}</Dropdown.Item>
+                    )
+                })}
+                
+                </Dropdown.Menu>
+                            </Dropdown>
             <Dropdown align='end'>
       <Dropdown.Toggle variant='dark' id="dropdown-basic">{fname}</Dropdown.Toggle>
 

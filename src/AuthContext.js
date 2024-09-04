@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 const AuthProvider = createContext();
 
 const AuthContext = ({ children }) => {
-    const [userId, setUserId] = useState(null);
+    const [userId, setUserId] = useState();
+    const [notification, setNotification] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -17,7 +18,7 @@ const AuthContext = ({ children }) => {
     }, [navigate]);
 
     return (
-        <AuthProvider.Provider value={{ userId, setUserId }}>
+        <AuthProvider.Provider value={{ userId, setUserId,notification,setNotification }}>
             {children}
         </AuthProvider.Provider>
     );

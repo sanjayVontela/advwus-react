@@ -18,7 +18,7 @@ import Logout from './Logout';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import AuthContext from './AuthContext';
-
+import ChatPage from './ChatPage';
 const RoutesList = () => {
     const darkTheme = createTheme({
         palette: {
@@ -43,7 +43,8 @@ const RoutesList = () => {
                 <Route path='/admin' element={<Admin />} />
                 <Route path='/signup' element={<Signup />} />
                 <Route path='/profile' element={<Profile />} />
-                <Route path='/chat/:id' element={<Chat />} />
+                <Route path='/chat/:chatId' element={<ChatPage />} />
+                <Route path='/chat' element={<ChatPage />} />
                 <Route path='/addProduct' element={<AddProduct />} />
                 <Route path='/ownProducts' element={<OwnProducts />} />
                 <Route path='/wishlist' element={<Wishlist />} />
