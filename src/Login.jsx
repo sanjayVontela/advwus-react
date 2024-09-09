@@ -88,7 +88,7 @@ const Login = () => {
                         <div>
                         <TextField type="string" label="email" variant="outlined" sx={{margin:"2% auto",width:"80%"}} error={error.email} required onChange={(e)=>setEmail(e.target.value)}/><br/>
                         <TextField type="password" label="password" variant="outlined" sx={{margin:"2% auto",width:"80%"}} error={error.password} required onChange={(e)=>setPassword(e.target.value)}/><br/>
-                        <a className='btn' href="">Forgot password?</a><br/>
+                        <a className='btn' href="/forgot" style={{'color':'white'}}>Forgot password?</a><br/>
                         <div className='submit'>
                             <button className='btn btn-dark' type='submit' onClick={signIn}>Submit</button>
                         </div>

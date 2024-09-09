@@ -44,17 +44,6 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.text{
-    
-    background-color: #423F32;
-    margin-top: 10%;
-    height: 70px;
-    width: 40%;
-    border-radius: 20%/50%;
-    margin-left: 30%;
-    /* margin-right: 50%; */
-    margin-bottom: 40px;
-}
 
 .col{
     margin: 0;

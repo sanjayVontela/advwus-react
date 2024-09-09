@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const AuthProvider = createContext();
 
@@ -7,18 +7,21 @@ const AuthContext = ({ children }) => {
     const [userId, setUserId] = useState();
     const [notification, setNotification] = useState([]);
     const navigate = useNavigate();
+    const location = useLocation();
+    const exemptPaths = ["/", "/forgot", "/signup"];
 
     useEffect(() => {
         const Id = localStorage.getItem("id");
         setUserId(Id);
 
-        if (!Id) {
+        // Redirect to login if not authenticated and path is not exempt
+        if (!Id && !exemptPaths.includes(location.pathname)) {
             navigate("/login");
         }
-    }, [navigate]);
+    }, [navigate, location.pathname]);
 
     return (
-        <AuthProvider.Provider value={{ userId, setUserId,notification,setNotification }}>
+        <AuthProvider.Provider value={{ userId, setUserId, notification, setNotification }}>
             {children}
         </AuthProvider.Provider>
     );

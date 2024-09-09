@@ -19,6 +19,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import AuthContext from './AuthContext';
 import ChatPage from './ChatPage';
+import ForogtPassword from './ForogtPassword';
 const RoutesList = () => {
     const darkTheme = createTheme({
         palette: {
@@ -32,6 +33,7 @@ const RoutesList = () => {
         <BrowserRouter>
         <Routes>
         <Route path='/' element={<Index />} />
+        <Route path='/forgot' element={<ForogtPassword />} />
         </Routes>
         <AuthContext>
             <Routes>
